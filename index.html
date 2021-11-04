@@ -2,13 +2,14 @@
 <html lang="ja">
 <head>
 <meta charset="UTF-8">
-<title>アイマス楽曲言えるかな？</title>
+<link href="style.css" rel="stylesheet">
+<title>test</title>
 </head>
 <body>
-<h1 class="title",id="titletext">アイマス楽曲言えるかな？</h1>
+<h1 class="title"> アイマス楽曲言えるかな？Ultimate</h1>
 <p id="titletext"> </p>
 <p><font size="1">※初めての方へ：本ゲームは作りかけです。遊ぶことはできますが色々と不便な点・融通の利かない点・誤っている点などがありますのでご了承ください。</font></p>
-
+<p><font size="1">【最終更新：2021/11/4 同日のミリラジで発表された2曲を追加 1238→1240】</font></p>
 <p>
 <label>曲名：<input type="text" id="nameText"></label>
 <input type="button" value="Check" id="checkButton">
@@ -16,10 +17,30 @@
 <p id="wrongtext">　</p>
 <p id="lefttext">　</p>
 <p>既に答えた曲名↓</p>
-<font size="1"><p id="msg"></p></font>
+<font size="1"><div class="box">
+  <p id="ansedtext"></p>
+</div></font>
 
 <script>
-var songlist=["Plus 1 Good Day!",
+let nameText = document.getElementById('nameText');
+nameText.value = '';
+let ansedtext = document.getElementById('ansedtext');
+
+let checkButton = document.getElementById('checkButton');
+checkButton.addEventListener('click', buttonClick);
+
+nameText.addEventListener('keypress', onenter);
+
+function onenter(e) {
+  	if (e.keyCode === 13) {
+		buttonClick();
+	}  
+		return false;
+}
+
+var songlist=["勇気のfragrance",
+"ピカリピックアップ！",
+"Plus 1 Good Day!",
 "アイシテの呪縛～Je vous aime～",
 "愛の旋律",
 "EVER RISING",
@@ -1293,7 +1314,7 @@ function buttonClick(){
   for (let i=0; i<answers.length;i++){
   anstext= anstext +answers[i]+" | ";
   }
-  msg.innerText = anstext;
+  ansedtext.innerText = anstext;
   leftsong--;
   lefttext.innerText="あと"+leftsong+"曲";
   nameText.value = '';
@@ -1302,12 +1323,7 @@ function buttonClick(){
   
 }
 
-let nameText = document.getElementById('nameText');
-nameText.value = '';
-let msg = document.getElementById('msg');
 
-let checkButton = document.getElementById('checkButton');
-checkButton.addEventListener('click', buttonClick);
 </script>
 
 </body>
